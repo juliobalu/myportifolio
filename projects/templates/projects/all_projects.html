@@ -1,0 +1,27 @@
+    {% extends 'projects/base.html' %}
+
+    <!-- It is necessary to load the images -->
+    {% load static %}
+
+    {% block content %}
+
+    <!-- here is a loop to get the data from the projects dataset, that was created in views -->
+    <div class="container">
+        <h1>Projects</h1>
+        <div class="row">
+        {% for project in projects %}
+            <div class="col-md-4">
+                <div class="card mb-2">
+                    <img class="card-img-top" src="{% static project.image %}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ project.title }}</h5> <!-- print the data -->
+                        <p class="card-text">{{ project.description }}</p>
+                        <a href="{% url 'projects:project_detail' project.pk %}" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+
+    {% endblock %}
